@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lccc}
+\toprule
+Method & Scenario A (Sparse) & Scenario B (Rich) & Scenario C (Cyclic) \\
+\midrule
+Ours & \textbf{0.877 {\scriptsize $\pm$ 0.007}} & \textbf{0.914 {\scriptsize $\pm$ 0.006}} & \textbf{0.856 {\scriptsize $\pm$ 0.004}} \\
+RFD+MPNN & \underline{0.808 {\scriptsize $\pm$ 0.009}} & \underline{0.845 {\scriptsize $\pm$ 0.004}} & \underline{0.786 {\scriptsize $\pm$ 0.007}} \\
+PepMLM & 0.776 {\scriptsize $\pm$ 0.006} & 0.814 {\scriptsize $\pm$ 0.006} & 0.762 {\scriptsize $\pm$ 0.008} \\
+NSGA-II & 0.758 {\scriptsize $\pm$ 0.008} & 0.786 {\scriptsize $\pm$ 0.005} & 0.729 {\scriptsize $\pm$ 0.006} \\
+Qwen3-32B & 0.740 {\scriptsize $\pm$ 0.008} & 0.745 {\scriptsize $\pm$ 0.007} & 0.705 {\scriptsize $\pm$ 0.006} \\
+DeepSeek-V3.2 & 0.739 {\scriptsize $\pm$ 0.008} & 0.749 {\scriptsize $\pm$ 0.006} & 0.715 {\scriptsize $\pm$ 0.009} \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of optimized lead quality across three benchmarking scenarios (Assumed). Scenario A: Sparse SAR (e.g., SKEMPI 2.0); Scenario B: Rich SAR (PD-L1); Scenario C: Cyclic case study (Krpep-2d). Metric: Final Score.}
+\label{tab:main_results}
+\end{table}

@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lcc}
+\toprule
+Method & Hypervolume & Front Size \\
+\midrule
+Ours & \textbf{0.743 {\scriptsize $\pm$ 0.007}} & \textbf{18.400 {\scriptsize $\pm$ 1.140}} \\
+NSGA-II & 0.682 {\scriptsize $\pm$ 0.007} & 15.400 {\scriptsize $\pm$ 1.140} \\
+RFD+MPNN & 0.600 {\scriptsize $\pm$ 0.007} & 12.600 {\scriptsize $\pm$ 0.894} \\
+PepMLM & 0.535 {\scriptsize $\pm$ 0.007} & 10.600 {\scriptsize $\pm$ 0.894} \\
+GPT-4o & 0.413 {\scriptsize $\pm$ 0.006} & 7.600 {\scriptsize $\pm$ 0.894} \\
+\bottomrule
+\end{tabular}
+\caption{Pareto-front Quality Metrics (Scenario B) (Assumed). Hypervolume measures the volume dominated by the solution set in normalized objective space. Front size is the number of non-dominated solutions.}
+\label{tab:pareto-metrics}
+\end{table}
