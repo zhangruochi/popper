@@ -1,0 +1,170 @@
+{
+  "__schema_version__": "1.0",
+  "__assumed_notice__": "ALL numbers in this file are ASSUMED placeholder values for drafting. Replace with real_results.json once real experiments are available.",
+  "__how_to_use__": [
+    "1) Copy this file to your paper folder as assumed_results.json.",
+    "2) Replace dataset/baseline/method names based on your OUTLINE (do not invent new baselines).",
+    "3) Keep all placeholder numbers ONLY in assumed_results.json.",
+    "4) Run generate_plots_table.py to export figures/tables for paper writing.",
+    "5) Later: swap in real_results.json (same schema) and regenerate assets."
+  ],
+  "paper": {
+    "title_working": "<Working Title>",
+    "paper_type": "<Algorithm|System|Theory>",
+    "method": {
+      "id": "ours",
+      "name": "<Your Method Name>",
+      "short": "Ours"
+    }
+  },
+  "baselines": [
+    { "id": "baseline_1", "name": "<Baseline 1 from outline>", "short": "B1", "family": "<e.g., Transformer|GNN|Diffusion|Classic>" },
+    { "id": "baseline_2", "name": "<Baseline 2 from outline>", "short": "B2", "family": "<...>" },
+    { "id": "baseline_3", "name": "<Baseline 3 from outline>", "short": "B3", "family": "<...>" },
+    { "id": "baseline_4", "name": "<Baseline 4 from outline>", "short": "B4", "family": "<...>" }
+  ],
+  "datasets": [
+    { "id": "ds_1", "name": "<Dataset 1>", "task": "<classification|regression|retrieval|generation>", "notes": "" },
+    { "id": "ds_2", "name": "<Dataset 2>", "task": "<...>", "notes": "" },
+    { "id": "ds_3", "name": "<Dataset 3>", "task": "<...>", "notes": "" }
+  ],
+  "metrics": [
+    { "id": "primary", "name": "<Primary Metric>", "direction": "higher_is_better", "format": "float3" },
+    { "id": "secondary", "name": "<Secondary Metric>", "direction": "higher_is_better", "format": "float3" },
+    { "id": "efficiency", "name": "Runtime (s)", "direction": "lower_is_better", "format": "float2" }
+  ],
+  "assumptions": {
+    "seeds": [0, 1, 2],
+    "protocol": {
+      "split": "<e.g., official split / 5-fold CV>",
+      "hardware": "<e.g., 1xA100-80GB>",
+      "training_budget": "<e.g., 100 epochs, 3e-4 lr>",
+      "implementation_note": "These are drafting placeholders; align with your actual setup later."
+    }
+  },
+  "experiments": [
+    {
+      "id": "main_results",
+      "kind": "main_table",
+      "title": "Main results across datasets",
+      "datasets": ["ds_1", "ds_2", "ds_3"],
+      "metric": "primary",
+      "methods": ["ours", "baseline_1", "baseline_2", "baseline_3", "baseline_4"],
+      "values": {
+        "ds_1": { "ours": [0.931, 0.933, 0.932], "baseline_1": [0.915, 0.914, 0.913], "baseline_2": [0.908, 0.909, 0.907], "baseline_3": [0.901, 0.902, 0.903], "baseline_4": [0.896, 0.895, 0.897] },
+        "ds_2": { "ours": [0.887, 0.889, 0.888], "baseline_1": [0.875, 0.874, 0.876], "baseline_2": [0.871, 0.870, 0.872], "baseline_3": [0.866, 0.867, 0.865], "baseline_4": [0.858, 0.859, 0.857] },
+        "ds_3": { "ours": [0.792, 0.794, 0.793], "baseline_1": [0.781, 0.780, 0.782], "baseline_2": [0.776, 0.777, 0.775], "baseline_3": [0.768, 0.769, 0.770], "baseline_4": [0.761, 0.760, 0.762] }
+      },
+      "notes": "Assumed SOTA on primary metric for drafting. Keep baselines consistent with outline."
+    },
+    {
+      "id": "ablation",
+      "kind": "ablation_table",
+      "title": "Ablation study (remove each component)",
+      "dataset": "ds_1",
+      "metric": "primary",
+      "variants": [
+        { "id": "full", "name": "Ours (full)", "values": [0.931, 0.933, 0.932] },
+        { "id": "no_comp_a", "name": "w/o Component A", "values": [0.924, 0.923, 0.925] },
+        { "id": "no_comp_b", "name": "w/o Component B", "values": [0.919, 0.920, 0.918] },
+        { "id": "no_comp_c", "name": "w/o Component C", "values": [0.926, 0.927, 0.925] },
+        { "id": "simple", "name": "Simplified (A+B only)", "values": [0.916, 0.915, 0.917] }
+      ],
+      "notes": "Replace component names to match Method section/outline."
+    },
+    {
+      "id": "scaling_data",
+      "kind": "scaling_curve",
+      "title": "Scaling with training data",
+      "dataset": "ds_1",
+      "metric": "primary",
+      "x": { "name": "Training data fraction", "values": [0.1, 0.2, 0.4, 0.6, 0.8, 1.0] },
+      "series": [
+        { "method": "ours", "y": [0.821, 0.861, 0.902, 0.918, 0.927, 0.932] },
+        { "method": "baseline_1", "y": [0.804, 0.842, 0.888, 0.905, 0.911, 0.914] },
+        { "method": "baseline_2", "y": [0.798, 0.836, 0.882, 0.896, 0.903, 0.908] }
+      ],
+      "notes": "Use this for 'data efficiency' claims (keep assumptions explicit)."
+    },
+    {
+      "id": "robustness_noise",
+      "kind": "robustness_curve",
+      "title": "Robustness under input corruption",
+      "dataset": "ds_2",
+      "metric": "primary",
+      "x": { "name": "Noise level", "values": [0.0, 0.1, 0.2, 0.3, 0.4] },
+      "series": [
+        { "method": "ours", "y": [0.888, 0.879, 0.868, 0.852, 0.834] },
+        { "method": "baseline_1", "y": [0.875, 0.862, 0.845, 0.821, 0.795] },
+        { "method": "baseline_2", "y": [0.871, 0.859, 0.841, 0.816, 0.788] }
+      ],
+      "notes": "Pick corruption types/noise levels consistent with your outline."
+    },
+    {
+      "id": "efficiency_runtime",
+      "kind": "efficiency_scatter",
+      "title": "Accuracy–runtime tradeoff",
+      "dataset": "ds_1",
+      "x_metric": "efficiency",
+      "y_metric": "primary",
+      "points": [
+        { "method": "ours", "x": 0.38, "y": 0.932 },
+        { "method": "baseline_1", "x": 0.44, "y": 0.914 },
+        { "method": "baseline_2", "x": 0.31, "y": 0.908 },
+        { "method": "baseline_3", "x": 0.22, "y": 0.902 },
+        { "method": "baseline_4", "x": 0.19, "y": 0.896 }
+      ],
+      "notes": "For systems papers, consider also throughput/latency and cost plots."
+    }
+  ],
+  "assets": [
+    {
+      "id": "tab_main_results",
+      "type": "table",
+      "source_experiment": "main_results",
+      "output": { "latex": "assets/tables/tab_main_results.tex", "png": "assets/tables/tab_main_results.png" },
+      "style": { "caption": "Main results (Assumed).", "label": "tab:main", "highlight_best": true }
+    },
+    {
+      "id": "tab_ablation",
+      "type": "table",
+      "source_experiment": "ablation",
+      "output": { "latex": "assets/tables/tab_ablation.tex", "png": "assets/tables/tab_ablation.png" },
+      "style": { "caption": "Ablation study (Assumed).", "label": "tab:ablation", "highlight_best": true }
+    },
+    {
+      "id": "fig_main_bar",
+      "type": "figure",
+      "plot": "grouped_bar",
+      "source_experiment": "main_results",
+      "output": { "pdf": "assets/figs/fig_main_bar.pdf", "png": "assets/figs/fig_main_bar.png" },
+      "style": { "title": "Main results", "xlabel": "Dataset", "ylabel": "<Primary Metric>", "legend": true }
+    },
+    {
+      "id": "fig_scaling",
+      "type": "figure",
+      "plot": "line",
+      "source_experiment": "scaling_data",
+      "output": { "pdf": "assets/figs/fig_scaling.pdf", "png": "assets/figs/fig_scaling.png" },
+      "style": { "title": "Scaling with data", "xlabel": "Training data fraction", "ylabel": "<Primary Metric>", "legend": true }
+    },
+    {
+      "id": "fig_robustness",
+      "type": "figure",
+      "plot": "line",
+      "source_experiment": "robustness_noise",
+      "output": { "pdf": "assets/figs/fig_robustness.pdf", "png": "assets/figs/fig_robustness.png" },
+      "style": { "title": "Robustness", "xlabel": "Noise level", "ylabel": "<Primary Metric>", "legend": true }
+    },
+    {
+      "id": "fig_efficiency",
+      "type": "figure",
+      "plot": "scatter",
+      "source_experiment": "efficiency_runtime",
+      "output": { "pdf": "assets/figs/fig_efficiency.pdf", "png": "assets/figs/fig_efficiency.png" },
+      "style": { "title": "Accuracy–runtime tradeoff", "xlabel": "Runtime (s)", "ylabel": "<Primary Metric>", "legend": true }
+    }
+  ]
+}
+
+
